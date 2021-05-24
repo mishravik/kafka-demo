@@ -37,14 +37,14 @@ module.exports = class Consumer {
   init () {
     return Promise.all(this._consumers.map((consumer) => consumer.init().then(() => {
       const topic = consumer.options.clientId
-      const { maxSize } = _.find(this._types, (type) => type.name === topic.split('-')[1])
-      if (maxSize && maxSize > 1) {
+      //const { maxSize } = _.find(this._types, (type) => type.name === topic.split('-')[1])
+      //if (maxSize && maxSize > 1) {
         // If there is maxSize for this topic then start from the latest offset
         // and rewind by that many messages for the subscription offset
-        return consumer.offset(topic).then((latest) => this._subscribe(consumer, { offset: latest - maxSize }))
-      } else {
+        //return consumer.offset(topic).then((latest) => this._subscribe(consumer, { offset: latest - maxSize }))
+      //} else {
         return this._subscribe(consumer, { time: Kafka.LATEST_OFFSET })
-      }
+      //}
     })))
   }
 
