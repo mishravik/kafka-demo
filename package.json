@@ -28,7 +28,7 @@
     "pug-loader": "^2.3.0",
     "standard": "^8.1.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2",
+    "webpack": "^5.x",
     "ws": "^1.1.1",
     "zero-fill": "^2.2.3"
   },
@@ -38,7 +38,7 @@
     "webpack-livereload-plugin": "^0.8.2"
   },
   "engines": {
-    "node": ">=5.0.0 <7.0.0"
+    "node": "^14.x"
   },
   "license": "MIT",
   "main": "webpack.config.js",
