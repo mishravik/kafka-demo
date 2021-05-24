@@ -58,3 +58,6 @@ consumer.init().then(() => {
   wss.on('connection', (client) => send(consumer.snapshot())(client))
   server.listen(port, () => console.log(`http/ws server listening on ${port}`))
 })
+.catch(error => {
+   console.error(error.message);
+});
