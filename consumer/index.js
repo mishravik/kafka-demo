@@ -12,7 +12,7 @@ module.exports = class Consumer {
     this._topics = options.topics
     this._types = options.types
     this._broadcast = options.broadcast
-    this._kafkaTopics = combine(this._topics, this._types, (topic, type) => kafkaPrefix+`${topic.name}-${type.name}`)
+    this._kafkaTopics = combine(this._topics, this._types, (topic, type) => `${topic.name}-${type.name}`)
 
     // Create a separate consumer for each topic since each topic needs a specific offset
     this._consumers = this._kafkaTopics.map((clientId) => {
@@ -58,7 +58,7 @@ module.exports = class Consumer {
   _subscribe (consumer, options = {}) {
     const topic = consumer.options.clientId;
     console.info('topic' + topic);
-    return consumer.subscribe(topic, 0, options, (messageSet) => {
+    return consumer.subscribe(kafkaPrefix+topic, 0, options, (messageSet) => {
       const [name, type] = topic.split('-')
       const messages = messageSet.map((m) => Object.assign({ id: name }, JSON.parse(m.message.value.toString('utf8'))))
       const initial = this._snapshot[type][name].empty()
