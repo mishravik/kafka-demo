@@ -56,7 +56,8 @@ module.exports = class Consumer {
   }
 
   _subscribe (consumer, options = {}) {
-    const topic = consumer.options.clientId
+    const topic = consumer.options.clientId;
+    console.info('topic' + topic);
     return consumer.subscribe(topic, 0, options, (messageSet) => {
       const [name, type] = topic.split('-')
       const messages = messageSet.map((m) => Object.assign({ id: name }, JSON.parse(m.message.value.toString('utf8'))))
@@ -84,6 +85,8 @@ module.exports = class Consumer {
           this._toBroadcast[type] = {}
         }
       }
-    })
+    }).catch(error => {
+        console.error(error.message);
+   })
   }
 }
