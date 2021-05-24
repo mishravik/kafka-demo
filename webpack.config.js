@@ -22,6 +22,9 @@ const html = (filename, bodyClass, title = 'Kafka Demo App') => new HtmlPlugin({
 })
 
 module.exports = {
+  node: {
+       child_process:"empty"
+  },
   //target: "node",
   entry: path.join(__dirname, 'src', 'index.js'),
   output: {
