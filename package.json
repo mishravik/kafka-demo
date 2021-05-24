@@ -28,7 +28,7 @@
     "pug-loader": "^2.3.0",
     "standard": "^8.1.0",
     "style-loader": "^0.13.1",
-    "webpack": "^5.x",
+    "webpack": "^1.13.2",
     "ws": "^1.1.1",
     "zero-fill": "^2.2.3"
   },
