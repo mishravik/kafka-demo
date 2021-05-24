@@ -3,6 +3,7 @@
 const _ = require('lodash')
 const Kafka = require('no-kafka')
 const SizedArray = require('./sizedArray')
+const kafkaPrefix = process.env.KAFKA_PREFIX;
 
 const combine = (arr1, arr2, combinator) => _.flatten(arr1.map((a) => arr2.map((b) => combinator(a, b))))
 
@@ -11,7 +12,7 @@ module.exports = class Consumer {
     this._topics = options.topics
     this._types = options.types
     this._broadcast = options.broadcast
-    this._kafkaTopics = combine(this._topics, this._types, (topic, type) => `${topic.name}-${type.name}`)
+    this._kafkaTopics = combine(this._topics, this._types, (topic, type) => kafkaPrefix+`${topic.name}-${type.name}`)
 
     // Create a separate consumer for each topic since each topic needs a specific offset
     this._consumers = this._kafkaTopics.map((clientId) => {
