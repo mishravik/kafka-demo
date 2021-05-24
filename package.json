@@ -38,7 +38,7 @@
     "webpack-livereload-plugin": "^0.8.2"
   },
   "engines": {
-    "node": "^14.x"
+    "node": "^6.x"
   },
   "license": "MIT",
   "main": "webpack.config.js",
