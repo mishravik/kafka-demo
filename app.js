@@ -58,3 +58,12 @@ consumer.init().then(() => {
   wss.on('connection', (client) => send(consumer.snapshot())(client))
   server.listen(port, () => console.log(`http/ws server listening on ${port}`))
 })
+
+process.on('warning', err => {
+  // This would log the following
+  /**
+   * (node:18876) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): Error: !!!!
+   * { UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): Error: !!!!
+   */
+  console.log(err)
+})
